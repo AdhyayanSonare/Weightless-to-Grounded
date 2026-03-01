@@ -1,0 +1,115 @@
+:root {
+  --color-bg-dark: #05050a; /* Very deep blue/black */
+  --color-text: #f0f0f5;
+  --color-accent-cold: #4a90e2;
+  --color-accent-warm: #f39c12;
+  --font-main: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+  The canvas container must be fixed to the viewport 
+  so it stays in place while we scroll the content over it.
+*/
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1; /* Behind the content */
+  pointer-events: none; /* Let clicks pass through to content by default */
+}
+
+/* 
+  Enable pointer events specifically for the Canvas 
+  when we reach the final scene (the interaction button).
+  We'll toggle this class via JS.
+*/
+.canvas-container.interactive {
+  pointer-events: auto;
+}
+
+/* 
+  The scrollable overlay container. 
+  It creates the scrollable height that GSAP will track.
+*/
+.overlay-container {
+  position: relative;
+  z-index: 10; /* In front of canvas */
+  width: 100%;
+}
+
+.scene-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  /* We visually hide the sections initially using GSAP or CSS */
+  opacity: 0; 
+}
+
+h1, h2, p {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.scene-text {
+  font-size: 2.5rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  max-width: 800px;
+}
+
+.sub-text {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin-top: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* The interactive button in the final scene */
+.action-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: auto; /* Ensure it's clickable */
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(243, 156, 18, 0.2);
+}
+
+.action-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 40px rgba(243, 156, 18, 0.4);
+  transform: translateY(-2px);
+}

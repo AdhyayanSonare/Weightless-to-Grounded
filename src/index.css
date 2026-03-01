@@ -1,0 +1,141 @@
+:root {
+  --color-bg-dark: #05050a;
+  --color-text: #f0f0f5;
+  --color-accent-cold: #4a90e2;
+  --color-accent-warm: #f39c12;
+  --font-main: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  /* Actually, we want the body to be able to scroll, but let's manage it */
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+  The canvas MUST be fixed to cover the entire viewport 
+  and stay put while the user scrolls the page.
+*/
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  /* Back layer */
+  pointer-events: none;
+  /* Let scroll pass through */
+}
+
+.canvas-container.interactive {
+  pointer-events: auto;
+  /* Enable interaction for the final button */
+}
+
+/* 
+  The overlay container dictates the total scroll height.
+*/
+.overlay-container {
+  position: relative;
+  z-index: 10;
+  /* Front layer */
+  width: 100%;
+}
+
+.scene-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  opacity: 0;
+  /* Hidden by default, GSAP fades them in */
+  will-change: opacity, transform;
+}
+
+/* The first section should trigger immediately */
+.scene-1 {
+  opacity: 1;
+}
+
+h1,
+h2,
+p {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.scene-text {
+  font-size: clamp(2rem, 5vw, 4rem);
+  /* Responsive font size */
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  max-width: 800px;
+}
+
+.sub-text {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  opacity: 0.8;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Action Button built using semantic HTML instead of 3D Drei HTML for better reliability */
+.action-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.action-button {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 1.2rem 4rem;
+  font-size: 1.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  pointer-events: auto;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  box-shadow: 0 15px 35px rgba(243, 156, 18, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.action-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 50px rgba(243, 156, 18, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px) scale(1.05);
+}
+
+.action-button:active {
+  transform: translateY(2px) scale(0.98);
+}
