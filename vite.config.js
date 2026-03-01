@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// Pure static site — no React plugin needed
 export default defineConfig({
-  plugins: [react()],
+  // Vite will serve index.html from the root by default
 })

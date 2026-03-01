@@ -1,0 +1,166 @@
+/* ═══════════════════════════════════════════
+   Weightless to Grounded — style.css
+   Deep-space aesthetic, glassmorphism accents
+   ═══════════════════════════════════════════ */
+
+/* ── Reset ─────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Spline 3D Background ─────────────── */
+spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    /* Ensure GPU compositing */
+    transform: translateZ(0);
+    will-change: contents;
+}
+
+/* ── Scrollable Foreground ─────────────── */
+.scroll-container {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    /* Let Spline receive hover/drag if needed */
+    /* GPU-accelerated for smooth lerp scroll */
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* ── Each Scene Section ────────────────── */
+.scene {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+/* ── Typography ────────────────────────── */
+.scene-text {
+    text-align: center;
+    opacity: 0;
+    /* Hidden initially — GSAP fades them in */
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Scene 1 text starts visible */
+.scene-1-text {
+    opacity: 1;
+}
+
+.scene-text h1 {
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.15);
+}
+
+.scene-text p {
+    font-weight: 300;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ── Scroll-Down Indicator ─────────────── */
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+    will-change: opacity, transform;
+}
+
+.scroll-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.scroll-arrow {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Truce Button (Glassmorphism) ──────── */
+.truce-btn {
+    pointer-events: auto;
+    /* Clickable */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 2.4rem);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1.2rem 4.5rem;
+    border-radius: 60px;
+    cursor: pointer;
+    opacity: 0;
+    /* GSAP will fade it in */
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+    box-shadow:
+        0 0 40px rgba(255, 255, 255, 0.06),
+        inset 0 0 20px rgba(255, 255, 255, 0.04);
+}
+
+.truce-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+        0 0 60px rgba(255, 255, 255, 0.15),
+        inset 0 0 30px rgba(255, 255, 255, 0.08);
+    transform: scale(1.06);
+}
+
+.truce-btn:active {
+    transform: scale(0.97);
+}

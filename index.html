@@ -1,16 +1,77 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weightless to Grounded</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weightless to Grounded</title>
+  <meta name="description" content="An immersive 3D cinematic message." />
+
+  <!-- Spline Viewer -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.61/build/spline-viewer.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+
+  <!-- ═══ 3D BACKGROUND (Spline) ═══ -->
+  <spline-viewer device-pixel-ratio="1"
+    url="https://prod.spline.design/UXAaPzdSycU5lm53/scene.splinecode"></spline-viewer>
+
+  <!-- ═══ SCROLLABLE FOREGROUND ═══ -->
+  <div class="scroll-container">
+
+    <!-- Scene 1 -->
+    <section class="scene" id="scene-1">
+      <div class="scene-text scene-1-text">
+        <h1>SO WE SAID BYE.</h1>
+        <p>BUT WHAT IS THE POINT<br />OF THIS SILENCE?</p>
+      </div>
+
+      <!-- Scroll Down Indicator -->
+      <div class="scroll-indicator" id="scroll-indicator">
+        <span class="scroll-label">Scroll down</span>
+        <svg class="scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Scene 2 -->
+    <section class="scene" id="scene-2">
+      <div class="scene-text">
+        <h1>DISTORTED!</h1>
+        <p>OUR PLAYFUL FIGHT IS<br />BEYOND THE LIMITS OF<br />MAKING ANY SENSE.</p>
+      </div>
+    </section>
+
+    <!-- Scene 3 -->
+    <section class="scene" id="scene-3">
+      <div class="scene-text">
+        <h1>PROMISES!</h1>
+        <p>NOT MEANT TO BE BROKEN<br />EVEN WHEN WE ARE<br />BEING STUBBORN.</p>
+      </div>
+    </section>
+
+    <!-- Resolution -->
+    <section class="scene" id="scene-4">
+      <button class="truce-btn" id="truce-btn">Truce?</button>
+    </section>
+
+  </div>
+
+  <script src="/main.js"></script>
+</body>
+
 </html>
